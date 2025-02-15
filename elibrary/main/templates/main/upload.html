@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Upload buku
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
+    <div class="card p-4 shadow-lg" style="width: 800px;">
+        <h3 class="text-center mb-3">Upload Buku</h3>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload' %}">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="pdf" class="form-label">Upload Buku (hanya menerima format .pdf)</label>
+                <input type="file" id="pdf" name="pdf" class="form-control" accept="application/pdf" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Judul</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="desc" class="form-label">Deskripsi</label>
+                <textarea id="desc" name="desc" class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="author" class="form-label">Penulis</label>
+                <input type="text" id="author" name="author" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="year" class="form-label">Tahun</label>
+                <input type="number" id="year" name="year" class="form-control" min="0" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input type="text" id="genre" name="genre" class="form-control" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Upload</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

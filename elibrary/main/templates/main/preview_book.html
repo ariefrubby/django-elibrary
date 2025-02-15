@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Preview - {{ book.title }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-4 d-flex justify-content-center align-items-center" >
+    <img src="{{ current_page.image.url }}" class="img-fluid shadow-lg" alt="Halaman {{ page_number }}">
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentPage = parseInt(document.getElementById("current-page").textContent, 10);
+        let totalPages = parseInt(document.getElementById("total-pages").textContent, 10);
+
+        document.getElementById("prev-btn").addEventListener("click", function () {
+            if (currentPage > 1) {
+                window.location.href = `?page=${currentPage - 1}`;
+            }
+        });
+
+        document.getElementById("next-btn").addEventListener("click", function () {
+            if (currentPage < totalPages) {
+                window.location.href = `?page=${currentPage + 1}`;
+            }
+        });
+    });
+</script>
+{% endblock %}

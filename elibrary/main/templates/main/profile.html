@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Profil
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card p-4 shadow-lg" style="width: 800px; text-align: center;">
+        {% load static %}
+        {% if user.photo %}
+    <img src="{{ user.photo.url }}" alt="Profile Image" class="rounded-circle mb-3 mx-auto d-block" width="100" height="100">
+{% else %}
+    <img src="{% static 'default_image.png' %}" alt="Default Profile Image" class="rounded-circle mb-3 mx-auto d-block" width="100" height="100">
+{% endif %}
+
+        {% if user.name %}
+            <h4 class="fw-bold">{{ user.name }}</h4>
+        {% endif %}
+        
+        <p class="text-muted">{{ user.email }}</p>
+        
+        <a href="{% url 'profile_edit' %}" class="btn btn-primary w-100 mb-2">Edit Profil</a>
+        <a class="btn btn-outline-secondary w-100">Ganti Password</a>
+    </div>
+</div>
+{% endblock %}
